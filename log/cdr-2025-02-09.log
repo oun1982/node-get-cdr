@@ -17,3 +17,17 @@
 
 [2025-02-09 12:09:25] INFO default - CDR data loaded from MySQL: 5030 records
 
+[2025-02-09 HH:11:45] INFO default - Server running on port 3000
+
+[2025-02-09 HH:11:45] INFO default - Connected to MySQL database
+
+[2025-02-09 HH:11:59] INFO default - Server running on port 3000
+
+[2025-02-09 HH:12:00] INFO default - Connected to MySQL database
+
+[2025-02-09 12:14:59] INFO default - Server running on port 3000
+
+[2025-02-09 12:14:59] INFO default - Connected to MySQL database
+
+[2025-02-09 12:16:08] INFO default - Server running on port 3000
+[2025-02-09 12:16:08] INFO default - Connected to MySQL database
