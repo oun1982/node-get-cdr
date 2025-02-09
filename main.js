@@ -2,10 +2,23 @@ const AsteriskManager = require('asterisk-manager');
 const express = require('express');
 const log4js = require('log4js');
 const mysql = require('mysql2');
+const fs = require('fs');
+const path = require('path');
 
-// Configure log4js
+// Ensure the log directory exists
+const logDirectory = path.join(__dirname, 'log');
+if (!fs.existsSync(logDirectory)) {
+    fs.mkdirSync(logDirectory);
+}
+
+// Get the current date in YYYY-MM-DD format
+const currentDate = new Date().toISOString().split('T')[0];
+
+// Configure log4js with dynamic file name based on current date
 log4js.configure({
-    appenders: { file: { type: 'file', filename: 'cdr.log' } },
+    appenders: {
+        file: { type: 'file', filename: path.join(logDirectory, `cdr-${currentDate}.log`) }
+    },
     categories: { default: { appenders: ['file'], level: 'info' } }
 });
 
