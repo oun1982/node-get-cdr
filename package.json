@@ -11,6 +11,7 @@
   "description": "",
   "dependencies": {
     "asterisk-manager": "^0.2.0",
+    "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "log4js": "^6.9.1",
     "mysql2": "^3.12.0"

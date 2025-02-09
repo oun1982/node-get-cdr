@@ -1,3 +1,19 @@
-[2025-02-09T11:51:04.783] [INFO] default - Server running on port 3000
-[2025-02-09T11:51:04.912] [INFO] default - Connected to MySQL database
-[2025-02-09T11:51:05.405] [INFO] default - CDR data loaded from MySQL: 5027 records
+[2025-02-09T12:04:34.709] [INFO] default - Server running on port 3000
+[2025-02-09T12:04:35.431] [INFO] default - Connected to MySQL database
+[2025-02-09T12:04:35.920] [INFO] default - CDR data loaded from MySQL: 5029 records
+[2025-02-09T12:05:10.409] [INFO] default - New CDR: {"event":"Cdr","privilege":"cdr,all","accountcode":"","source":"0944930295","destination":"020801111","destinationcontext":"from-internal","callerid":"\"\" <0944930295>","channel":"PJSIP/2510-00000019","destinationchannel":"PJSIP/TR_PL_MOBILE-0000001a","lastapplication":"Dial","lastdata":"PJSIP/020801111@TR_PL_MOBILE,300,Tb(func-apply-sipheaders^s^1,(7))U(sub-send-ob","starttime":"2025-02-09 12:05:05","answertime":"2025-02-09 12:05:07","endtime":"2025-02-09 12:05:12","duration":"6","billableseconds":"4","disposition":"ANSWERED","amaflags":"DOCUMENTATION","uniqueid":"1739077505.25","userfield":""}
+[2025-02-09T12:07:38.598] [INFO] default - Server running on port 3000
+[2025-02-09T12:07:38.833] [INFO] default - Connected to MySQL database
+[2025-02-09T12:07:39.430] [INFO] default - CDR data loaded from MySQL: 5030 records
+[2025-02-09 HH:09:06] INFO default - Server running on port 3000
+
+[2025-02-09 HH:09:06] INFO default - Connected to MySQL database
+
+[2025-02-09 HH:09:07] INFO default - CDR data loaded from MySQL: 5030 records
+
+[2025-02-09 12:09:24] INFO default - Server running on port 3000
+
+[2025-02-09 12:09:25] INFO default - Connected to MySQL database
+
+[2025-02-09 12:09:25] INFO default - CDR data loaded from MySQL: 5030 records
+

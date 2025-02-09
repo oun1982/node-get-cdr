@@ -5,8 +5,11 @@ const mysql = require('mysql2');
 const fs = require('fs');
 const path = require('path');
 
+// Load environment variables
+require('dotenv').config();
+
 // Ensure the log directory exists
-const logDirectory = path.join(__dirname, 'log');
+const logDirectory = path.join(__dirname, process.env.LOG_DIR);
 if (!fs.existsSync(logDirectory)) {
     fs.mkdirSync(logDirectory);
 }
@@ -14,10 +17,17 @@ if (!fs.existsSync(logDirectory)) {
 // Get the current date in YYYY-MM-DD format
 const currentDate = new Date().toISOString().split('T')[0];
 
-// Configure log4js with dynamic file name based on current date
+// Configure log4js with dynamic file name and custom date format
 log4js.configure({
     appenders: {
-        file: { type: 'file', filename: path.join(logDirectory, `cdr-${currentDate}.log`) }
+        file: {
+            type: 'file',
+            filename: path.join(logDirectory, `CDR-${currentDate}.log`),
+            layout: {
+                type: 'pattern',
+                pattern: '[%d{yyyy-MM-dd hh:mm:ss}] %p %c - %m%n'  // Custom date format
+            }
+        }
     },
     categories: { default: { appenders: ['file'], level: 'info' } }
 });
@@ -26,10 +36,10 @@ const logger = log4js.getLogger();
 
 // MySQL Database Connection
 const db = mysql.createConnection({
-    host: '192.168.10.20',
-    user: 'dcall',
-    password: 'dcallpass',  // Replace with your MySQL password
-    database: 'dcall' // Replace with your CDR database name
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME
 });
 
 db.connect(err => {
@@ -78,8 +88,14 @@ const fetchCDRDataFromDB = () => {
 // Fetch data when the server starts
 fetchCDRDataFromDB();
 
-// Connect to Asterisk Manager
-const ami = new AsteriskManager(5038, '192.168.10.20', 'clicktocall', '482b324e64935e035edd96f60beb5d71', true);
+// Connect to Asterisk Manager using environment variables
+const ami = new AsteriskManager(
+    process.env.AMI_PORT,
+    process.env.AMI_HOST,
+    process.env.AMI_USER,
+    process.env.AMI_SECRET,
+    true
+);
 ami.keepConnected();
 
 // Capture CDR events
@@ -103,7 +119,7 @@ ami.on('cdr', (event) => {
 
 // Create REST API
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000; // Use the port from .env or default to 3000
 
 // Endpoint to fetch all CDR data
 app.get('/cdr/all', (req, res) => {
@@ -129,7 +145,22 @@ app.get('/cdr/:number', (req, res) => {
     }
 });
 
-// Start the server
+// Start the server and log the start time
 app.listen(port, () => {
     logger.info(`Server running on port ${port}`);
+});
+
+// Handle app termination (e.g., Ctrl+C, SIGTERM)
+process.on('SIGINT', () => {
+    logger.info('Application is stopping...');
+    // Optionally, perform any cleanup here
+    db.end();  // Close MySQL connection
+    process.exit(0);  // Exit the process
+});
+
+process.on('SIGTERM', () => {
+    logger.info('Application is stopping due to SIGTERM...');
+    // Optionally, perform any cleanup here
+    db.end();  // Close MySQL connection
+    process.exit(0);  // Exit the process
 });
