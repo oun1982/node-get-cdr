@@ -1,19 +1,24 @@
 {
   "name": "maxgroup-cdr",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+     "start": "node main.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
+  "bin": "main.js",
   "dependencies": {
     "asterisk-manager": "^0.2.0",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "log4js": "^6.9.1",
     "mysql2": "^3.12.0"
+  },
+  "devDependencies": {
+    "pkg": "^5.8.1"
   }
 }
