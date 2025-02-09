@@ -25,7 +25,7 @@ log4js.configure({
             filename: path.join(logDirectory, `CDR-${currentDate}.log`),
             layout: {
                 type: 'pattern',
-                pattern: '[%d{yyyy-MM-dd hh:mm:ss}] %p %c - %m%n'  // Custom date format
+                pattern: '[%d{yyyy-MM-dd hh:mm:ss}] %p %c - %m'  // Custom date format
             }
         }
     },
@@ -54,17 +54,18 @@ db.connect(err => {
 let cdrData = [];
 const fetchCDRDataFromDB = () => {
     const query = `
-    SELECT 
-      uniqueid, 
-      channel, 
-      dst, 
-      DATE_FORMAT(completedate, '%Y-%m-%d %H:%i:%s') AS formatted_completedate
-    FROM dialtraffic
-    WHERE 
-      calltype = 'O' 
-      AND agentid != 0 
-      and completedate BETWEEN NOW() - INTERVAL 30 DAY AND NOW()
-    ORDER BY completedate DESC
+    		SELECT 
+    uniqueid, 
+    channel, 
+    dst, 
+    DATE_FORMAT(completedate, '%Y-%m-%d %H:%i:%s') AS formatted_completedate
+FROM dialtraffic
+WHERE 
+    calltype = 'O' 
+    AND agentid != 0 
+    AND LENGTH(dst) > 6  -- Filter for dst with more than 6 digits
+    AND completedate BETWEEN NOW() - INTERVAL 30 DAY AND NOW()
+ORDER BY completedate DESC;
   `;
     
     db.query(query, (err, results) => {
@@ -141,7 +142,7 @@ app.get('/cdr/:number', (req, res) => {
         const latestCDR = filteredData[0];  // This will be the most recent CDR
         res.json(latestCDR);
     } else {
-        res.status(404).json({ message: 'No CDR data found for this number' });
+        res.status(404).json({});
     }
 });
 

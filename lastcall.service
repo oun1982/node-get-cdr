@@ -1,0 +1,12 @@
+[Service]
+ExecStart=/usr/bin/node /opt/maxgroup-cdr/main.js
+WorkingDirectory=/opt/maxgroup-cdr
+Restart=always
+User=root
+Group=root
+Environment=NODE_ENV=production
+Environment=PATH=/usr/bin:/usr/local/bin
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=lastcall-service
+
