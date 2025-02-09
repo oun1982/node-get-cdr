@@ -19,6 +19,7 @@ $servers = [
 // Generate URLs for each server with prefixes 9 and 8
 $urls = [];
 foreach ($servers as $server) {
+    $urls[] = "http://$server:3000/cdr/" . $baseNumber;
     $urls[] = "http://$server:3000/cdr/9" . $baseNumber;
     $urls[] = "http://$server:3000/cdr/8" . $baseNumber;
     $urls[] = "http://$server:3000/cdr/7" . $baseNumber;
