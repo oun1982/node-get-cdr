@@ -78,5 +78,5 @@ process.on('SIGTERM', stopApp); // Handle termination signal
 
 // Start the server and log the start time
 app.listen(port, () => {
-    logger.info(`Server running on port ${port}`);
+    logger.info(`Start Aplication running on port ${port}`);
 });

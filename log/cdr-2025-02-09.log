@@ -31,3 +31,10 @@
 
 [2025-02-09 12:16:08] INFO default - Server running on port 3000
 [2025-02-09 12:16:08] INFO default - Connected to MySQL database
+[2025-02-09 12:16:40] INFO default - Application is stopping...
+[2025-02-09 12:16:51] INFO default - Server running on port 3000
+[2025-02-09 12:16:52] INFO default - Connected to MySQL database
+[2025-02-09 12:16:57] INFO default - Application is stopping...
+[2025-02-09 12:17:48] INFO default - Start Aplication running on port 3000
+[2025-02-09 12:17:48] INFO default - Connected to MySQL database
+[2025-02-09 12:17:55] INFO default - Application is stopping...
