@@ -1,0 +1,12 @@
+[2025-02-08T20:57:43.072] [INFO] default - Server running at http://localhost:3000
+[2025-02-08T20:57:43.080] [ERROR] default - Error connecting to AMI: Error: connect ECONNREFUSED 127.0.0.1:5038
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1615:16) {
+  errno: -4078,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 5038
+}
+[2025-02-08T20:58:27.497] [INFO] default - Server running at http://localhost:3000
+[2025-02-08T20:58:59.840] [INFO] default - GET /api/search
+[2025-02-08T20:58:59.842] [INFO] default - No results found.
